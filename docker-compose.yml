@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  react-app:
+    container_name: "wal-g-perffarm-react"
+    image: ${IMAGE_REACT_APP}
+    build: .
+    ports:
+      - 127.0.0.1:${PORT}:80
