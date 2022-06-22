@@ -1,6 +1,8 @@
 import {Anchor, Table} from "react-bootstrap";
 import dateFormat, { masks } from "dateformat";
 
+import {Chart} from "../../components/chart";
+
 const runs = [
     {"id":1,"os":"Linux x86_64 5.14.21-2-MANJARO","commit_repo": "https://github.com/wal-g/wal-g","commit_sha":"c105cbe4c69bf67c7a7ca26476cc414daeb23ef4","commit_time":"2022-04-11T12:15:08","client_version":"v1","client_environment":"environment","metrics":[{"name":"random_wal_fetch_100_times_avg_time","value":0.05032906084015849}]},
     {"id":2,"os":"Linux x86_64 5.14.21-2-MANJARO","commit_repo": "https://github.com/wal-g/wal-g","commit_sha":"c105cbe4c69bf67c7a7ca26476cc414daeb23ef4","commit_time":"2022-04-11T12:15:08","client_version":"v1","client_environment":"environment","metrics":[{"name":"real_wal_fetch_100_times_avg_time","value":0.05225277017005283}]},
@@ -16,6 +18,7 @@ export function RunsPage() {
         <div className={'md-1'}>
             <h2>Performance Test Runs</h2>
         </div>
+            <Chart></Chart>
         <Table bordered hover>
             <thead>
                 {tableColumnHeaders.map(title => <th>{title}</th>)}

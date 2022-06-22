@@ -8,6 +8,7 @@ class Url {
 
     build(pathArgs, queryArgs = {}, options = {}) {
         const path = this.pathGenerator(pathArgs);
+        console.log(path);
 
         if (!queryArgs || Object.keys(queryArgs).length === 0) {
             return path;
