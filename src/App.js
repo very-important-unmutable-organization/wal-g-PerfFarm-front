@@ -5,21 +5,21 @@ import {
     Navigate,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import {SignupForm} from "./components/signup-form";
-// import {LoginForm} from "./components/login-form";
+import {SignupForm} from "./components/signup-form";
+import {LoginForm} from "./components/login-form";
 import {RunsPage} from "./pages/runs-page";
 import React, {useState} from "react";
 import {Header} from "./components/header";
 // import {RunTaskForm} from "./components/run-task-form";
 import {RunPage} from "./pages/run-page";
-// import {UserContext} from "./components/utils/userContext";
+import {UserContext} from "./components/utils/userContext";
 import {browserHistory} from "./components/utils/browserHistory";
 
 function App() {
-    const [user, setUser] = useState(undefined);
+    const [user, setUser] = useState(null);
 
   return (
-      // <UserContext.Provider value={{user, setUser}} >
+      <UserContext.Provider value={{user, setUser}} >
           <div className="App">
               <Header />
               <Router history={browserHistory}>
@@ -36,7 +36,7 @@ function App() {
                   </main>
               </Router>
           </div>
-      // </UserContext.Provider>
+      </UserContext.Provider>
   );
 }
 

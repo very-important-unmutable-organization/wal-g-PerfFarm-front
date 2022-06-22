@@ -3,6 +3,7 @@ import {login} from "../../api/requests";
 
 import './login-form.css'
 import {useContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {UserContext} from "../utils/userContext";
 import {browserHistory} from "../utils/browserHistory";
 
@@ -10,6 +11,7 @@ export function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
     const handleUsernameChange = e => {
         setUsername(e.target.value)
     }
@@ -17,7 +19,8 @@ export function LoginForm() {
         setPassword(e.target.value)
     }
 
-    const {setUser} = useContext(UserContext)
+    const userContext = useContext(UserContext);
+    console.log(userContext);
     const onSubmit = async (e) => {
         e.preventDefault();
         if (!username || !password) return;
@@ -27,8 +30,9 @@ export function LoginForm() {
             alert(resp.err)
         }
         else {
-            setUser({username, accessToken: resp.accessToken});
-            browserHistory.push('/')
+            userContext.setUser({username, accessToken: resp.accessToken});
+            browserHistory.push('/login');
+            navigate("/runs");
         }
     }
 
