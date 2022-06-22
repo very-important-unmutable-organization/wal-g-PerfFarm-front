@@ -1,73 +1,43 @@
-import React from 'react';
-import { LineChart, Line, XAxis, CartesianGrid, Tooltip } from 'recharts';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import {SignupForm} from "./components/signup-form";
+// import {LoginForm} from "./components/login-form";
+import {RunsPage} from "./pages/runs-page";
+import React, {useState} from "react";
+import {Header} from "./components/header";
+// import {RunTaskForm} from "./components/run-task-form";
+import {RunPage} from "./pages/run-page";
+// import {UserContext} from "./components/utils/userContext";
+import {browserHistory} from "./components/utils/browserHistory";
 
-
-export function Header() {
-  return (
-      <h1>
-        WAL-G PerfFarm
-      </h1>
-  )
-}
-
-export function App() {
-  const data = [
-    {
-      name: 1,
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: 2,
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: 3,
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 4,
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 5,
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 6,
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 7,
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
+function App() {
+    const [user, setUser] = useState(undefined);
 
   return (
-      <LineChart
-          width={400}
-          height={400}
-          data={data}
-          margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-      >
-        <XAxis dataKey="name"/>
-        <Tooltip />
-        <CartesianGrid stroke="#f5f5f5" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" yAxisId={0} />
-        <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} />
-      </LineChart>
-  )
+      // <UserContext.Provider value={{user, setUser}} >
+          <div className="App">
+              <Header />
+              <Router history={browserHistory}>
+                  <main className={'main'}>
+                      <Routes>
+                          <Route path={"/"} element={<Navigate replace to={'/runs'} />} />
+                          {/*<Route path={"/login"} element={<LoginForm />} />*/}
+                          {/*<Route path={"/signup"} element={<SignupForm />} />*/}
+                          {/*<Route path={"/run-task"} element={<RunTaskForm />} />*/}
+                          {/* TODO ну там разберитесь что и куда отображать */}
+                          <Route path={"/runs"} element={<RunsPage />} />
+                          <Route path={"/runs/:runId"} element={<RunPage />} />
+                      </Routes>
+                  </main>
+              </Router>
+          </div>
+      // </UserContext.Provider>
+  );
 }
+
+export default App;
